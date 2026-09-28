@@ -1,0 +1,1 @@
+{"name":"learnmate-backend","version":"1.0.0","type":"module","main":"index.js","scripts":{"start":"nodemon index.js","dev":"nodemon index.js"},"dependencies":{"@google/genai":"latest","bcryptjs":"latest","cors":"latest","dotenv":"latest","express":"latest","jsonwebtoken":"latest","mongoose":"latest","multer":"latest"},"devDependencies":{"nodemon":"latest"}}

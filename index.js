@@ -1,0 +1,15 @@
+import "dotenv/config";
+import express from "express";
+import cors from "cors";
+import connectDB from "./src/utils/db.js";
+import authRoutes from "./src/routes/auth.routes.js";
+import materialRoutes from "./src/routes/material.routes.js";
+import aiRoutes from "./src/routes/ai.routes.js";
+import adminRoutes from "./src/routes/admin.routes.js";
+const app=express(); const PORT=process.env.PORT||5000;
+app.use(cors()); app.use(express.json({limit:"5mb"})); app.use(express.urlencoded({extended:true}));
+app.get("/",(req,res)=>res.json({success:true,message:"LearnMate backend is running"}));
+app.use("/api/auth",authRoutes); app.use("/api/material",materialRoutes); app.use("/api/ai",aiRoutes); app.use("/api/admin",adminRoutes);
+app.use((req,res)=>res.status(404).json({success:false,message:"Route not found"}));
+app.use((err,req,res,next)=>res.status(err.status||500).json({success:false,message:err.message||"Internal server error"}));
+connectDB().then(()=>app.listen(PORT,()=>console.log(`LearnMate server running on http://localhost:${PORT}`))).catch(e=>{console.error("Server startup failed:",e.message);process.exit(1)});

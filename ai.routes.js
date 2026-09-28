@@ -1,0 +1,1 @@
+import{Router}from"express";import{protect}from"../middleware/auth.js";import{flashcards,quiz,studyPlan}from"../controllers/ai.controller.js";const r=Router();r.use(protect);r.post("/flashcards/:id",flashcards);r.post("/quiz/:id",quiz);r.post("/study-plan",studyPlan);export default r;
